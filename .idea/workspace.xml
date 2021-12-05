@@ -19,10 +19,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bf89e2c2-1fec-4262-a408-7a7c120f0795" name="Default Changelist" comment="added feature to go back to search">
+    <list default="true" id="bf89e2c2-1fec-4262-a408-7a7c120f0795" name="Default Changelist" comment="Pass repo name to history component">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/features/SearchBarElement.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/SearchBarElement.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/HistoryDisplay.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/HistoryDisplay.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -118,7 +117,14 @@
       <option name="project" value="LOCAL" />
       <updated>1638739336786</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Pass repo name to history component">
+      <created>1638740412235</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1638740412235</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -142,7 +148,8 @@
     <MESSAGE value="pass commit data to child component" />
     <MESSAGE value="display required data" />
     <MESSAGE value="added feature to go back to search" />
-    <option name="LAST_COMMIT_MESSAGE" value="added feature to go back to search" />
+    <MESSAGE value="Pass repo name to history component" />
+    <option name="LAST_COMMIT_MESSAGE" value="Pass repo name to history component" />
   </component>
   <component name="WindowStateProjectService">
     <state x="96" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1638567173816">

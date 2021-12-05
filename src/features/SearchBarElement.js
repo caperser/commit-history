@@ -8,7 +8,7 @@
 //React Native Dependencies
 import React, { useState }  from 'react';
 import { Text, View, StyleSheet, FlatList, Dimensions, Button,
-TouchableOpacity, ActivityIndicator } from 'react-native';
+TouchableOpacity, ActivityIndicator, Alert } from 'react-native';
 import { SearchBar } from 'react-native-elements';
 import { useNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -25,6 +25,7 @@ height: Dimensions.get('window').height
 export default function SearchBarElement () {
    const navigation = useNavigation();
    const [search, setSearch] = useState('');
+   const [results, setResults] = useState('');
    const [repoName, setRepoName] = useState('');
    const [repoData, setRepoData] = useState([]);
    const [loadingSearch, setLoading] = useState(false);
@@ -40,13 +41,35 @@ export default function SearchBarElement () {
    //makes async call to search/repo to return repos related to search query
    const requestSearchData = async ()  => {
       setLoading(true);
+      setResults('');
       if (search) {
              // If search field is not empty on button press
              //fetch search using search query
              fetch('https://api.github.com/search/repositories?q='+ search)
                     .then((response) => response.json())
                     .then((responseJson) => {
-                      setRepoData(responseJson.items);
+                      console.log(responseJson.items);
+                      //if bad request display error otherwise,
+                      //if results are empty display no results
+                      if ('errors' in responseJson){
+                        console.log('contains error');
+                        setResults('No Results');
+                        Alert.alert(
+                          'Warning',
+                          'Repo names characters must be either a hyphen ( - ) or alphanumeric, they cannot start with a hyphen and cannot include consecutive hyphens.',
+                          [
+                            {text: 'Ok', style: 'cancel'},
+                          ],
+                          {
+                            cancelable: true
+                          }
+                        );
+                      } else if(!responseJson.items.length){
+                        setResults('No Results');
+                      } else {
+                        setResults('');
+                        setRepoData(responseJson.items);
+                      }
                       setLoading(false);
                     })
                     .catch((error) => {
@@ -99,7 +122,6 @@ export default function SearchBarElement () {
       setSearch(text);
       //if search is cleared, clear filtered results
       if(text === ''){
-        console.log('is equal');
         setRepoData([]);
       }
    }
@@ -128,6 +150,9 @@ export default function SearchBarElement () {
             inputContainerStyle={styles.inputStyles}
             placeholder={'Search for a repo...'}
           />
+          <View style = {styles.titlesView}>
+          {results === ''? null: (<Text style={styles.titleStyle}>{results}</Text>)}
+          </View>
           {repoData.length ?
             (<View style={styles.flatListContainer}>
                <FlatList
@@ -138,7 +163,7 @@ export default function SearchBarElement () {
                />
             </View>) :
             (loadingSearch?
-              (<ActivityIndicator color={"#fff"} />):
+              (<ActivityIndicator color={'#fff'} />):
               (<TouchableOpacity  onPress={requestSearchData} style={styles.button}>
                 <Text style={styles.buttonText}>Search Specific Repository</Text>
               </TouchableOpacity>))
