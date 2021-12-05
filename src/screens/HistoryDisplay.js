@@ -7,43 +7,95 @@
 
 //React Native Dependencies
 import React, { useState, useEffect } from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, StyleSheet, SectionList,
+ ActivityIndicator } from 'react-native';
 
 
-export default function HistoryDisplay ({repoData}) {
-  const [commitData, setCommitData] = useState([]);
-  const [loadingCommits, setLoadingCommits] = useState(true);
+export default function HistoryDisplay ({commitData}) {
+  const [commitId,updateCommitId] = useState('')
   const [loadingMoreCommits, setLoadingMoreCommits] = useState(false);
+  const [commits, setCommitsData] = useState(commitData);
+  console.log(commitData);
 
-  //makes async call to /repo/commits to return the most recent commits
-  const requestSearchData = async ()  => {
-    console.log('in this method');
-     // If search field is not empty on button press
-     //fetch search using search query
-     console.log()
-     fetch('https://api.github.com/repos/'+ repoData.owner.login +'/'+ repoData.name +'/commits?page=1')
-            .then((response) => response.json())
-            .then((responseJson) => {
-              setCommitData(responseJson);
-              setLoadingCommits(false);
-            })
-            .catch((error) => {
-              console.error(error);
-              setLoadingCommits(false);
-            });
+  // Flat List Item Separator
+   const Separators = () => {
+     return (
+       <View style={styles.separatorStyle} />
+     );
+   };
 
+  const RepoSearches = ({item}) => {
+     return (
+       // Flat List Item
+       <Text
+         style={styles.repoStyle}
+         onPress={() => getRepo(item)}>
+         {item.commit.author.name}
+       </Text>
+     );
   };
 
-  useEffect(() => {
-    requestSearchData();
-  }, []);
-
+  // Function for click on commit item
+  const getCommit = (item) => {
+   //alert(item.name);
+  };
 
   return (
     <View>
-     <Text style={{color: 'white'}}>
-       {JSON.stringify(commitData)}
-     </Text>
-    </View>
+     <SectionList
+        ItemSeparatorComponent={Separators}
+        sections={[
+          { title: 'Commits', data: commitData },
+        ]}
+        renderSectionHeader={({ section }) => (
+          <Text style={styles.sectionHeaderStyle}> {section.title} </Text>
+        )}
+        renderItem={({ item }) => (
+          <Text
+            style={styles.sectionListItemStyle}
+            onPress={() => getCommit(item)}>
+            {item.commit.author.name}
+          </Text>
+        )}
+        keyExtractor={(item, index) => index}
+      />
+   </View>
   )
 }
+
+//styles for HistoryDisplay.js
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    marginHorizontal: 16
+  },
+  repoStyle: {
+      backgroundColor: '#483766',
+      color: 'white',
+    },
+  item: {
+    backgroundColor: "#f9c2ff",
+    padding: 20,
+    marginVertical: 8
+  },
+  header: {
+    fontSize: 32,
+    backgroundColor: "#fff"
+  },
+  titleStyle: {
+    fontSize: 24,
+    color: 'white',
+  },
+  separatorStyle: {
+    height: 0.5,
+    width: '100%',
+    backgroundColor: '#C8C8C8',
+
+  },
+  sectionListItemStyle: {
+    fontSize: 15,
+    padding: 15,
+    color: '#000',
+    backgroundColor: '#F5F5F5',
+  },
+});

@@ -28,7 +28,8 @@ export default function SearchBarElement () {
    const [repoData, setRepoData] = useState([]);
    const [loadingSearch, setLoading] = useState(false);
    const [displaySearch, setDisplay] = useState(true);
-   const [repo, setRepo] = useState([]);
+   const [commits, setCommits] = useState([]);
+   const [loadingCommits, setLoadingCommits] = useState(false);
 
    //makes async call to search/repo to return repos related to search query
    const requestSearchData = async ()  => {
@@ -49,6 +50,23 @@ export default function SearchBarElement () {
       }
 
    };
+
+   //makes async call to /repos/owner/repo commits to return the most recent commits
+     const requestCommitsData = (repInformation)  => {
+        setLoadingCommits(false);
+        //fetch search using search query
+        fetch('https://api.github.com/repos/'+ repInformation.owner.login +'/'+ repInformation.name +'/commits?page=1')
+               .then((response) => response.json())
+               .then((responseJson) => {
+                 setCommits(responseJson);
+                 setLoadingCommits(false);
+               })
+               .catch((error) => {
+                 console.error(error);
+                 setLoadingCommits(false);
+               });
+
+     };
 
    const RepoSearches = ({item}) => {
      return (
@@ -82,37 +100,40 @@ export default function SearchBarElement () {
    const getRepo = (item) => {
      //alert(item.name);
      //navigation.navigate('History', {repoInfo: item.name});
-     setRepo(item);
+     requestCommitsData(item);
      setDisplay(false);
      setLoading(false);
    };
 
     return (
-            <View>
-            {displaySearch ? (<View>
-            <SearchBar
-                      onChangeText={(text) => updateSearch(text)}
-                      value={search}
-                      inputStyle={styles.inputStyles}
-                      containerStyle={styles.container}
-                      inputContainerStyle={styles.inputStyles}
-                      placeholder={'Search for a repo...'}
-                    />
-                    {repoData.length ? (
-                      <View style={ styles.flatListContainer }>
-                         <FlatList
-                            data={repoData}
-                            keyExtractor={(item, index) => index.toString()}
-                            ItemSeparatorComponent={Separators}
-                            renderItem={RepoSearches}
-                         />
-                      </View>) :
-                      (loadingSearch? (<ActivityIndicator color={"#fff"} />):
-                      (<TouchableOpacity  onPress={requestSearchData} style={styles.button}>
-                        <Text style={styles.buttonText}>Search Specific Repository</Text>
-                      </TouchableOpacity>))
-                    }</View>) : <HistoryDisplay repoData={repo}/>}
-            </View>
+      <View>
+      {displaySearch ? (
+        <View>
+          <SearchBar
+            onChangeText={(text) => updateSearch(text)}
+            value={search}
+            inputStyle={styles.inputStyles}
+            containerStyle={styles.container}
+            inputContainerStyle={styles.inputStyles}
+            placeholder={'Search for a repo...'}
+          />
+          {repoData.length ?
+            (<View style={ styles.flatListContainer }>
+               <FlatList
+                  data={repoData}
+                  keyExtractor={(item, index) => index.toString()}
+                  ItemSeparatorComponent={Separators}
+                  renderItem={RepoSearches}
+               />
+            </View>) :
+            (loadingSearch?
+              (<ActivityIndicator color={"#fff"} />):
+              (<TouchableOpacity  onPress={requestSearchData} style={styles.button}>
+                <Text style={styles.buttonText}>Search Specific Repository</Text>
+              </TouchableOpacity>))
+          }
+        </View>) : <HistoryDisplay commitData={commits}/>}
+      </View>
     );
 }
 
