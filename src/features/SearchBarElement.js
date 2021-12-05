@@ -10,7 +10,9 @@ import React, { useState }  from 'react';
 import { Text, View, StyleSheet, FlatList, Dimensions, Button,
 TouchableOpacity, ActivityIndicator } from 'react-native';
 import { SearchBar } from 'react-native-elements';
+import { useNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import  HistoryDisplay from '../screens/HistoryDisplay';
 
 //grab dimensions of the device being used
 var dimensions = {
@@ -21,13 +23,16 @@ height: Dimensions.get('window').height
 //creates layout for search bar and filtered data on search
 //by making a request to the github search api
 export default function SearchBarElement () {
+   const navigation = useNavigation();
    const [search, setSearch] = useState('');
    const [repoData, setRepoData] = useState([]);
-   var loadingSearch = false;
+   const [loadingSearch, setLoading] = useState(false);
+   const [displaySearch, setDisplay] = useState(true);
+   const [repo, setRepo] = useState([]);
 
    //makes async call to search/repo to return repos related to search query
    const requestSearchData = async ()  => {
-      loadingSearch = true;
+      setLoading(true);
       if (search) {
              // If search field is not empty on button press
              //fetch search using search query
@@ -35,11 +40,11 @@ export default function SearchBarElement () {
                     .then((response) => response.json())
                     .then((responseJson) => {
                       setRepoData(responseJson.items);
-                      loadingSearch = false;
+                      setLoading(false);
                     })
                     .catch((error) => {
                       console.error(error);
-                      loadingSearch = false;
+                      setLoading(false);
                     });
       }
 
@@ -75,11 +80,16 @@ export default function SearchBarElement () {
 
    // Function for click on repo item
    const getRepo = (item) => {
-     alert(item.name);
+     //alert(item.name);
+     //navigation.navigate('History', {repoInfo: item.name});
+     setRepo(item);
+     setDisplay(false);
+     setLoading(false);
    };
 
     return (
             <View>
+            {displaySearch ? (<View>
             <SearchBar
                       onChangeText={(text) => updateSearch(text)}
                       value={search}
@@ -97,12 +107,11 @@ export default function SearchBarElement () {
                             renderItem={RepoSearches}
                          />
                       </View>) :
-                      loadingSearch? <ActivityIndicator color={"#fff"} />:
-                      <TouchableOpacity  onPress={requestSearchData} style={styles.button}>
+                      (loadingSearch? (<ActivityIndicator color={"#fff"} />):
+                      (<TouchableOpacity  onPress={requestSearchData} style={styles.button}>
                         <Text style={styles.buttonText}>Search Specific Repository</Text>
-                      </TouchableOpacity>
-                    }
-
+                      </TouchableOpacity>))
+                    }</View>) : <HistoryDisplay repoData={repo}/>}
             </View>
     );
 }

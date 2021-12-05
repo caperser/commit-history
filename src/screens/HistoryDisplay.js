@@ -9,10 +9,13 @@
 import React from 'react';
 import { Text, View } from 'react-native';
 
-export default function StartScreen () {
+
+export default function HistoryDisplay ({repoData}) {
   return (
     <View>
-      <Text>History</Text>
+     <Text style={{color: 'white'}}>
+       {JSON.stringify(repoData)}
+     </Text>
     </View>
   )
 }

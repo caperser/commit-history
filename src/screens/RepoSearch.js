@@ -9,7 +9,7 @@
 import React from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import  SearchBarElement from '../features/SearchBarElement'
+import  SearchBarElement from '../features/SearchBarElement';
 
 
 
