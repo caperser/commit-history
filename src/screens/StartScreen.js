@@ -9,6 +9,8 @@
 import React from 'react';
 import { Text, View, ImageBackground, StyleSheet,
 Button, TouchableOpacity, Dimensions } from 'react-native';
+import { NavigationContainer, useNavigation } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 //grab dimensions of the device being used
 var dimensions = {
@@ -16,10 +18,8 @@ width: Dimensions.get('window').width,
 height: Dimensions.get('window').height
 }
 
-//will hold method for pressing button
-const onPress = () => {};
-
 export default function StartScreen () {
+const navigation = useNavigation();
   return (
     <View style={ styles.container }>
       <ImageBackground source={require('../images/bg.jpg')} resizeMode="cover" style={styles.image}>
@@ -27,11 +27,8 @@ export default function StartScreen () {
        <View style={styles.content}>
           <View style = {styles.titlesView}>
            <Text style={styles.imageTitleText}>Welcome!</Text>
-           <Text style={styles.imageSubTitleText}>Start viewing Git history now.</Text>
-            <TouchableOpacity onPress={onPress} style={styles.button}>
-              <Text style={styles.buttonText}>View Recent Global Commits</Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={onPress} style={styles.button}>
+           <Text style={styles.imageSubTitleText}>Start viewing commit history now.</Text>
+            <TouchableOpacity  onPress={() => navigation.navigate('Search')} style={styles.button}>
               <Text style={styles.buttonText}>Search Specific Repository</Text>
             </TouchableOpacity>
           </View>
@@ -46,12 +43,17 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     position: 'absolute',
     top: 40,
-    left, left, right, bottom: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
   },
   content: {
     alignItems: 'center',
     position: 'absolute',
-    top, left, left, right, bottom: 0,
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
     backgroundColor: 'rgba(0,0,0,0.7)'
   },
   imageTitleText: {

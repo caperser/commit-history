@@ -19,8 +19,11 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bf89e2c2-1fec-4262-a408-7a7c120f0795" name="Default Changelist" comment="Navigation">
+    <list default="true" id="bf89e2c2-1fec-4262-a408-7a7c120f0795" name="Default Changelist" comment="layout for start Screen">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/RepoSearch.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/RepoSearch.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/screens/StartScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/StartScreen.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -68,7 +71,14 @@
       <option name="project" value="LOCAL" />
       <updated>1638574560854</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="layout for start Screen">
+      <created>1638588994792</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1638588994792</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -84,20 +94,29 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Navigation" />
-    <option name="LAST_COMMIT_MESSAGE" value="Navigation" />
+    <MESSAGE value="layout for start Screen" />
+    <option name="LAST_COMMIT_MESSAGE" value="layout for start Screen" />
   </component>
   <component name="WindowStateProjectService">
     <state x="96" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1638567173816">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="96" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.680@0.0.1280.680" timestamp="1638567173816" />
-    <state x="388" y="142" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1638573360056">
+    <state x="388" y="142" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1638638283685">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="388" y="142" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1280.680@0.0.1280.680" timestamp="1638573360056" />
+    <state x="388" y="142" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1280.680@0.0.1280.680" timestamp="1638638283685" />
     <state x="93" y="93" width="1095" height="495" key="AVDManager" timestamp="1638567717503">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="93" y="93" width="1095" height="495" key="AVDManager/0.0.1280.680@0.0.1280.680" timestamp="1638567717503" />
+    <state x="233" y="73" key="Vcs.Push.Dialog.v2" timestamp="1638589003661">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="233" y="73" key="Vcs.Push.Dialog.v2/0.0.1280.680@0.0.1280.680" timestamp="1638589003661" />
+    <state x="303" y="1" width="672" height="678" key="search.everywhere.popup" timestamp="1638637315030">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="303" y="1" width="672" height="678" key="search.everywhere.popup/0.0.1280.680@0.0.1280.680" timestamp="1638637315030" />
   </component>
 </project>

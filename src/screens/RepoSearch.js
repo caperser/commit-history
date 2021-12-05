@@ -7,12 +7,24 @@
 
 //React Native Dependencies
 import React from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, StyleSheet } from 'react-native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import  SearchBarElement from '../features/SearchBarElement'
 
-export default function StartScreen () {
+
+
+export default function RepoSearch () {
   return (
-    <View>
-      <Text>Search</Text>
+    <View style={styles.mainView}>
+      <SearchBarElement />
     </View>
   )
 }
+
+//styles for RepoSearch.js
+const styles = StyleSheet.create({
+   mainView: {
+   backgroundColor: '#110726',
+   flex: 1
+  },
+});
