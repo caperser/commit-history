@@ -9,9 +9,11 @@
 import React, { useState, useEffect } from 'react';
 import { Text, View, StyleSheet, SectionList,
  ActivityIndicator } from 'react-native';
+import { Button, Icon } from 'react-native-elements';
 
 
-export default function HistoryDisplay ({commitData}) {
+
+export default function HistoryDisplay ({commitData, back}) {
   const [commitId,updateCommitId] = useState('')
   const [loadingMoreCommits, setLoadingMoreCommits] = useState(false);
   const [commits, setCommitsData] = useState(commitData);
@@ -40,8 +42,26 @@ export default function HistoryDisplay ({commitData}) {
    //alert(item.name);
   };
 
+  //go back from commit display
+  const goBack = () => {
+   back(true);
+  }
+
   return (
-    <View>
+    <View style={styles.historyView}>
+    <Button
+      buttonStyle={ styles.backButton }
+      onPress={goBack}
+      icon={
+        <Icon
+          name="arrow-left"
+          size={20}
+          color="white"
+        />
+      }
+      iconLeft
+      title="Search Again"
+    />
      <SectionList
         ItemSeparatorComponent={Separators}
         sections={[
@@ -53,14 +73,17 @@ export default function HistoryDisplay ({commitData}) {
         renderItem={({ item }) => (
           <View onPress={() => getCommit(item)}>
           <Text style={styles.sectionListItemStyle}>
-            Author: {item.commit.author.name}
+            <Text style={styles.valueHeaders}>Author: </Text>
+            <Text style={styles.dataStyle}>{item.commit.author.name}</Text>
           </Text>
           <Text style={styles.sectionListItemStyle}>
-            Message: {item.commit.message}
+            <Text style={styles.valueHeaders}>Message: </Text>
+            <Text style={styles.dataStyle}>{item.commit.message}</Text>
           </Text>
           <Text style={styles.sectionListItemStyle}>
-                      Hash: {item.sha}
-                    </Text>
+            <Text style={styles.valueHeaders}>Hash: </Text>
+            <Text style={styles.dataStyle}>{item.sha}</Text>
+          </Text>
           </View>
         )}
         keyExtractor={(item, index) => index}
@@ -74,6 +97,24 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginHorizontal: 16
+  },
+  historyView: {
+    top: 20,
+    left: 5,
+    right: 5,
+  },
+  backButton: {
+    backgroundColor: 'transparent',
+    justifyContent: 'flex-start'
+  },
+  dataStyle: {
+    fontSize: 16,
+    color: 'white'
+  },
+  valueHeaders: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: 'white'
   },
   repoStyle: {
       backgroundColor: '#483766',
@@ -102,6 +143,6 @@ const styles = StyleSheet.create({
     fontSize: 15,
     padding: 15,
     color: '#000',
-    backgroundColor: '#F5F5F5',
+    backgroundColor: '#483766',
   },
 });

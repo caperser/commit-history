@@ -31,6 +31,11 @@ export default function SearchBarElement () {
    const [commits, setCommits] = useState([]);
    const [loadingCommits, setLoadingCommits] = useState(false);
 
+   //method passed to HistoryDisplay to change view
+   const callbackFunction = (childData) => {
+      setDisplay(childData);
+   };
+
    //makes async call to search/repo to return repos related to search query
    const requestSearchData = async ()  => {
       setLoading(true);
@@ -68,6 +73,7 @@ export default function SearchBarElement () {
 
      };
 
+   //formating for list items
    const RepoSearches = ({item}) => {
      return (
        // Flat List Item
@@ -132,7 +138,7 @@ export default function SearchBarElement () {
                 <Text style={styles.buttonText}>Search Specific Repository</Text>
               </TouchableOpacity>))
           }
-        </View>) : <HistoryDisplay commitData={commits}/>}
+        </View>) : <HistoryDisplay commitData={commits} back={callbackFunction}/>}
       </View>
     );
 }

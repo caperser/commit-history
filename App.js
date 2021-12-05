@@ -32,10 +32,7 @@ export default function App() {
                 <Stack.Screen
                   name="Search"
                   component={ RepoSearch }
-                />
-                <Stack.Screen
-                  name="History"
-                  component={ HistoryDisplay }
+                  options={{ headerShown: false }}
                 />
         </Stack.Navigator>
      </NavigationContainer>
