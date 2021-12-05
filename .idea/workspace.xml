@@ -19,9 +19,8 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bf89e2c2-1fec-4262-a408-7a7c120f0795" name="Default Changelist" comment="fetch commit data when component displayed">
+    <list default="true" id="bf89e2c2-1fec-4262-a408-7a7c120f0795" name="Default Changelist" comment="pass commit data to child component">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/SearchBarElement.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/SearchBarElement.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/screens/HistoryDisplay.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/HistoryDisplay.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -40,7 +39,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
+    <property name="android.sdk.path" value="$PROJECT_DIR$/../AppData/Local/Android/Sdk" />
     <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
@@ -97,7 +96,14 @@
       <option name="project" value="LOCAL" />
       <updated>1638727926188</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="pass commit data to child component">
+      <created>1638735480290</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1638735480291</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -118,7 +124,8 @@
     <MESSAGE value="search screen for searching for repos &amp; http connection search/repos" />
     <MESSAGE value="passing data to child component" />
     <MESSAGE value="fetch commit data when component displayed" />
-    <option name="LAST_COMMIT_MESSAGE" value="fetch commit data when component displayed" />
+    <MESSAGE value="pass commit data to child component" />
+    <option name="LAST_COMMIT_MESSAGE" value="pass commit data to child component" />
   </component>
   <component name="WindowStateProjectService">
     <state x="96" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1638567173816">

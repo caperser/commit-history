@@ -51,11 +51,17 @@ export default function HistoryDisplay ({commitData}) {
           <Text style={styles.sectionHeaderStyle}> {section.title} </Text>
         )}
         renderItem={({ item }) => (
-          <Text
-            style={styles.sectionListItemStyle}
-            onPress={() => getCommit(item)}>
-            {item.commit.author.name}
+          <View onPress={() => getCommit(item)}>
+          <Text style={styles.sectionListItemStyle}>
+            Author: {item.commit.author.name}
           </Text>
+          <Text style={styles.sectionListItemStyle}>
+            Message: {item.commit.message}
+          </Text>
+          <Text style={styles.sectionListItemStyle}>
+                      Hash: {item.sha}
+                    </Text>
+          </View>
         )}
         keyExtractor={(item, index) => index}
       />
