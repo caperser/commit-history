@@ -25,6 +25,7 @@ height: Dimensions.get('window').height
 export default function SearchBarElement () {
    const navigation = useNavigation();
    const [search, setSearch] = useState('');
+   const [repoName, setRepoName] = useState('');
    const [repoData, setRepoData] = useState([]);
    const [loadingSearch, setLoading] = useState(false);
    const [displaySearch, setDisplay] = useState(true);
@@ -59,6 +60,7 @@ export default function SearchBarElement () {
    //makes async call to /repos/owner/repo commits to return the most recent commits
      const requestCommitsData = (repInformation)  => {
         setLoadingCommits(false);
+        setRepoName(repInformation.name);
         //fetch search using search query
         fetch('https://api.github.com/repos/'+ repInformation.owner.login +'/'+ repInformation.name +'/commits?page=1')
                .then((response) => response.json())
@@ -112,9 +114,12 @@ export default function SearchBarElement () {
    };
 
     return (
-      <View>
+      <View style={styles.mainView}>
       {displaySearch ? (
         <View>
+          <View style = {styles.titlesView}>
+            <Text style={styles.titleStyle}> Search Page </Text>
+          </View>
           <SearchBar
             onChangeText={(text) => updateSearch(text)}
             value={search}
@@ -124,7 +129,7 @@ export default function SearchBarElement () {
             placeholder={'Search for a repo...'}
           />
           {repoData.length ?
-            (<View style={ styles.flatListContainer }>
+            (<View style={styles.flatListContainer}>
                <FlatList
                   data={repoData}
                   keyExtractor={(item, index) => index.toString()}
@@ -138,13 +143,25 @@ export default function SearchBarElement () {
                 <Text style={styles.buttonText}>Search Specific Repository</Text>
               </TouchableOpacity>))
           }
-        </View>) : <HistoryDisplay commitData={commits} back={callbackFunction}/>}
+        </View>) : <HistoryDisplay commitData={commits} back={callbackFunction} repoName={repoName}/>}
       </View>
     );
 }
 
 //styles for SearchBarElement.js
 const styles = StyleSheet.create({
+  mainView: {
+    top: 20,
+  },
+  titleStyle: {
+    color: 'white',
+    fontSize: 24,
+    fontWeight: '100',
+    fontFamily: 'sans-serif-thin'
+  },
+  titlesView: {
+    alignItems: 'center',
+  },
   separatorStyle: {
      height: 0.5,
      width: '100%',

@@ -13,7 +13,7 @@ import { Button, Icon } from 'react-native-elements';
 
 
 
-export default function HistoryDisplay ({commitData, back}) {
+export default function HistoryDisplay ({commitData, back, repoName}) {
   const [commitId,updateCommitId] = useState('')
   const [loadingMoreCommits, setLoadingMoreCommits] = useState(false);
   const [commits, setCommitsData] = useState(commitData);
@@ -49,19 +49,22 @@ export default function HistoryDisplay ({commitData, back}) {
 
   return (
     <View style={styles.historyView}>
-    <Button
-      buttonStyle={ styles.backButton }
-      onPress={goBack}
-      icon={
-        <Icon
-          name="arrow-left"
-          size={20}
-          color="white"
-        />
-      }
-      iconLeft
-      title="Search Again"
-    />
+      <Button
+        buttonStyle={ styles.backButton }
+        onPress={goBack}
+        icon={
+          <Icon
+            name="arrow-left"
+            size={20}
+            color="white"
+          />
+        }
+        iconLeft
+        title="Search Again"
+      />
+      <View style = {styles.titlesView}>
+        <Text style={styles.titleStyle}> {repoName} Commit History </Text>
+      </View>
      <SectionList
         ItemSeparatorComponent={Separators}
         sections={[
@@ -144,5 +147,14 @@ const styles = StyleSheet.create({
     padding: 15,
     color: '#000',
     backgroundColor: '#483766',
+  },
+  titleStyle: {
+    color: 'white',
+    fontSize: 24,
+    fontWeight: '100',
+    fontFamily: 'sans-serif-thin'
+  },
+  titlesView: {
+    alignItems: 'center',
   },
 });
