@@ -85,6 +85,7 @@ export default function SearchBarElement () {
    const setData = (responseJson) => {
     setCommits(responseJson);
     setLoadingCommits(false);
+    setAdvancedSearch(false);
     setDisplay(false);
     setLoading(false);
    }
@@ -98,6 +99,7 @@ export default function SearchBarElement () {
         fetch('https://api.github.com/repos/'+ repInformation.owner.login +'/'+ repInformation.name +'/commits?page=1')
                .then((response) => response.json())
                .then((responseJson) => {
+                console.log(responseJson);
                 if(responseJson.length < 30){
                   Alert.alert(
                     'Warning',
@@ -180,16 +182,20 @@ export default function SearchBarElement () {
             style={styles.textInput}
             placeholder="Repo name"
             placeholderTextColor={'white'}
-            maxLength={20}
+            value={repoName}
+            onChangeText={(name) => setRepoName(name)}
+            maxLength={40}
           />
           <View style={styles.formSpacing}><TextInput
             style={styles.textInput}
             placeholder="Repo owner"
             placeholderTextColor={'white'}
-            maxLength={20}
+            value={repoOwner}
+            onChangeText={(owner) => setRepoOwner(owner)}
+            maxLength={39}
           /></View>
           <View>
-           <TouchableOpacity  onPress={() => setAdvancedSearch(true)} style={styles.button}>
+           <TouchableOpacity  onPress={() => requestCommitsData({"owner":{"login":repoOwner},"name": repoName})} style={styles.button}>
               <Text style={styles.buttonText}>Search Commit History</Text>
            </TouchableOpacity>
           </View>
@@ -223,7 +229,7 @@ export default function SearchBarElement () {
             </View>
              <TouchableOpacity  onPress={() => setAdvancedSearch(true)} style={styles.button}>
                 <Text style={styles.buttonText}>Advanced Search</Text>
-                                         </TouchableOpacity>
+             </TouchableOpacity>
             </View>) :
             (loadingSearch?
               (<ActivityIndicator color={'#fff'} />):
