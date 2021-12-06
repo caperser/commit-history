@@ -7,9 +7,9 @@
 
 //React Native Dependencies
 import React, { useState }  from 'react';
-import { Text, View, StyleSheet, FlatList, Dimensions, Button,
-TouchableOpacity, ActivityIndicator, Alert } from 'react-native';
-import { SearchBar } from 'react-native-elements';
+import { Text, View, StyleSheet, FlatList, Dimensions,
+TouchableOpacity, ActivityIndicator, Alert, TextInput } from 'react-native';
+import { SearchBar, Icon, Button } from 'react-native-elements';
 import { useNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import  HistoryDisplay from '../screens/HistoryDisplay';
@@ -161,7 +161,39 @@ export default function SearchBarElement () {
 
     return (
       <View style={styles.mainView}>
-      {advancedSearch ? (<Text>hi</Text>):
+      {advancedSearch ? (
+      <View style={styles.inputContainer}>
+          <Button
+            buttonStyle={ styles.backButton }
+            onPress={() => setAdvancedSearch(false)}
+            icon={
+              <Icon
+                name="arrow-left"
+                size={20}
+                color="white"
+              />
+            }
+            iconLeft
+            title="Back to search"
+          />
+          <TextInput
+            style={styles.textInput}
+            placeholder="Repo name"
+            placeholderTextColor={'white'}
+            maxLength={20}
+          />
+          <View style={styles.formSpacing}><TextInput
+            style={styles.textInput}
+            placeholder="Repo owner"
+            placeholderTextColor={'white'}
+            maxLength={20}
+          /></View>
+          <View>
+           <TouchableOpacity  onPress={() => setAdvancedSearch(true)} style={styles.button}>
+              <Text style={styles.buttonText}>Search Commit History</Text>
+           </TouchableOpacity>
+          </View>
+        </View>):
       (<View>
       {displaySearch ? (
         <View>
@@ -212,6 +244,22 @@ const styles = StyleSheet.create({
   mainView: {
     top: 20,
   },
+  inputContainer: {
+    paddingTop: 15
+  },
+  formSpacing: {
+    top: 10
+  },
+  textInput: {
+    borderColor: '#CCCCCC',
+    borderRadius: 10,
+    color: 'white',
+    borderWidth: 2,
+    height: 50,
+    fontSize: 16,
+    paddingLeft: 20,
+    paddingRight: 20
+  },
   titleStyle: {
     color: 'white',
     fontSize: 24,
@@ -256,5 +304,9 @@ const styles = StyleSheet.create({
   buttonText: {
       color: "white",
       textAlign: "center"
-  }
+  },
+  backButton: {
+     backgroundColor: 'transparent',
+     justifyContent: 'flex-start'
+   },
  });
