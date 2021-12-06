@@ -55,24 +55,14 @@ export default function HistoryDisplay ({commitData, back, repoName, repoOwner})
    //makes async call to /repos/owner/repo commits to return the most recent commits
    const requestMoreData = (owner, name)  => {
       //fetch search using search query
-      fetch('https://api.github.com/repos/'+ owner +'/'+ name +'/commits?page=2')
+      fetch('https://api.github.com/repos/'+ repoOwner +'/'+ repoName +'/commits?page=2')
              .then((response) => response.json())
              .then((responseJson) => {
               if(responseJson.length < 30){
-                Alert.alert(
-                  'Warning',
-                  'This Repo contains fewer than 25 commits',
-                  [
-                    {text: 'Continue', onPress: () => setData(responseJson), style: 'cancel'},
-                    {text: 'Ok', style: 'cancel'},
-                  ],
-                  {
-                    cancelable: true
-                  }
-                );
+                console.log('end of repo');
               }else {
-
-               }
+                console.log('more ifo likely');
+              }
              })
              .catch((error) => {
                console.error(error);

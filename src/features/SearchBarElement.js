@@ -26,6 +26,7 @@ export default function SearchBarElement () {
    const navigation = useNavigation();
    const [search, setSearch] = useState('');
    const [results, setResults] = useState('');
+   const [advancedSearch, setAdvancedSearch] = useState(false);
    const [repoName, setRepoName] = useState('');
    const [repoOwner, setRepoOwner] = useState('');
    const [repoData, setRepoData] = useState([]);
@@ -46,7 +47,7 @@ export default function SearchBarElement () {
       if (search) {
              // If search field is not empty on button press
              //fetch search using search query
-             fetch('https://api.github.com/search/repositories?q='+ search)
+             fetch('https://api.github.com/search/repositories?q='+ search + '&per_page=100')
                     .then((response) => response.json())
                     .then((responseJson) => {
                       console.log(responseJson.items);
@@ -160,6 +161,8 @@ export default function SearchBarElement () {
 
     return (
       <View style={styles.mainView}>
+      {advancedSearch ? (<Text>hi</Text>):
+      (<View>
       {displaySearch ? (
         <View>
           <View style = {styles.titlesView}>
@@ -177,13 +180,18 @@ export default function SearchBarElement () {
           {results === ''? null: (<Text style={styles.titleStyle}>{results}</Text>)}
           </View>
           {repoData.length ?
-            (<View style={styles.flatListContainer}>
+            (<View>
+            <View style={styles.flatListContainer}>
                <FlatList
                   data={repoData}
                   keyExtractor={(item, index) => index.toString()}
                   ItemSeparatorComponent={Separators}
                   renderItem={RepoSearches}
                />
+            </View>
+             <TouchableOpacity  onPress={() => setAdvancedSearch(true)} style={styles.button}>
+                <Text style={styles.buttonText}>Advanced Search</Text>
+                                         </TouchableOpacity>
             </View>) :
             (loadingSearch?
               (<ActivityIndicator color={'#fff'} />):
@@ -191,7 +199,10 @@ export default function SearchBarElement () {
                 <Text style={styles.buttonText}>Search Specific Repository</Text>
               </TouchableOpacity>))
           }
-        </View>) : <HistoryDisplay commitData={commits} back={callbackFunction} repoName={repoName} repoOwner={repoOwner}/>}
+        </View>) :
+        <HistoryDisplay commitData={commits} back={callbackFunction}
+        repoName={repoName} repoOwner={repoOwner}/>}
+        </View>)}
       </View>
     );
 }
