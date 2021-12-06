@@ -50,11 +50,9 @@ export default function SearchBarElement () {
              fetch('https://api.github.com/search/repositories?q='+ search + '&per_page=100')
                     .then((response) => response.json())
                     .then((responseJson) => {
-                      console.log(responseJson.items);
                       //if bad request display error otherwise,
                       //if results are empty display no results
                       if ('errors' in responseJson){
-                        console.log('contains error');
                         setResults('No Results');
                         Alert.alert(
                           'Warning',

@@ -60,13 +60,9 @@ export default function HistoryDisplay ({commitData, back, repoName, repoOwner})
              .then((response) => response.json())
              .then((responseJson) => {
               if(responseJson.length < 30){
-                console.log('end of repo');
                 setViewMorePressed(true);
-                console.log(commits.length);
                 setCommitsData(commits.concat(responseJson));
-                console.log(commits.length);
               }else {
-                console.log('more info likely');
                 var newPage = pageNumber + 1;
                 setPageNumber(newPage);
                 setCommitsData(commits.concat(responseJson));
