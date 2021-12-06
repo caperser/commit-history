@@ -19,8 +19,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bf89e2c2-1fec-4262-a408-7a7c120f0795" name="Default Changelist" comment="removed log statements">
-      <change beforePath="$PROJECT_DIR$/src/features/SearchBarElement.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/SearchBarElement.js" afterDir="false" />
+    <list default="true" id="bf89e2c2-1fec-4262-a408-7a7c120f0795" name="Default Changelist" comment="25 commits requirement">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -193,7 +195,14 @@
       <option name="project" value="LOCAL" />
       <updated>1638826440506</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="25 commits requirement">
+      <created>1638826512675</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1638826512675</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -228,17 +237,18 @@
     <MESSAGE value="concatenating older commits" />
     <MESSAGE value="hide view more button if response length less than 30 - end of commits" />
     <MESSAGE value="removed log statements" />
-    <option name="LAST_COMMIT_MESSAGE" value="removed log statements" />
+    <MESSAGE value="25 commits requirement" />
+    <option name="LAST_COMMIT_MESSAGE" value="25 commits requirement" />
   </component>
   <component name="WindowStateProjectService">
     <state x="96" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1638567173816">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="96" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.680@0.0.1280.680" timestamp="1638567173816" />
-    <state x="388" y="142" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1638638283685">
+    <state x="388" y="142" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1638827359479">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="388" y="142" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1280.680@0.0.1280.680" timestamp="1638638283685" />
+    <state x="388" y="142" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1280.680@0.0.1280.680" timestamp="1638827359479" />
     <state x="93" y="93" width="1095" height="495" key="AVDManager" timestamp="1638717146563">
       <screen x="0" y="0" width="1280" height="680" />
     </state>

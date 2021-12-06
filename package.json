@@ -10,6 +10,22 @@
     "test": "jest",
     "eject": "expo eject"
   },
+  "jest": {
+    "setupFilesAfterEnv": [
+      "jest-enzyme"
+    ],
+    "preset": "react-native",
+    "testEnvironment": "enzyme",
+    "transformIgnorePatterns": [
+      "node_modules/(?!(@react-native|react-native)/)"
+    ],
+    "moduleNameMapper": {
+      ".+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$": "identity-obj-proxy"
+    },
+    "testEnvironmentOptions": {
+      "enzymeAdapter": "react16"
+    }
+  },
   "dependencies": {
     "@react-navigation/native": "^6.0.6",
     "@react-navigation/native-stack": "^6.2.5",
@@ -17,7 +33,6 @@
     "expo": "~43.0.2",
     "expo-status-bar": "~1.1.0",
     "react": "17.0.1",
-    "react-dom": "17.0.1",
     "react-native": "0.64.3",
     "react-native-elements": "^3.4.2",
     "react-native-safe-area-context": "3.3.2",
@@ -29,7 +44,14 @@
   "devDependencies": {
     "@babel/core": "^7.12.9",
     "@babel/preset-env": "^7.16.4",
-    "jest": "^27.4.3"
+    "@babel/preset-react": "^7.16.0",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.6",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^26.0.0",
+    "jest-environment-enzyme": "^7.1.2",
+    "jest-enzyme": "^7.1.2",
+    "react-dom": "^17.0.1"
   },
   "private": true
 }
