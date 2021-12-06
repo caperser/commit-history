@@ -27,6 +27,7 @@ export default function SearchBarElement () {
    const [search, setSearch] = useState('');
    const [results, setResults] = useState('');
    const [repoName, setRepoName] = useState('');
+   const [repoOwner, setRepoOwner] = useState('');
    const [repoData, setRepoData] = useState([]);
    const [loadingSearch, setLoading] = useState(false);
    const [displaySearch, setDisplay] = useState(true);
@@ -91,6 +92,7 @@ export default function SearchBarElement () {
      const requestCommitsData = (repInformation)  => {
         setLoadingCommits(false);
         setRepoName(repInformation.name);
+        setRepoOwner(repInformation.owner.login);
         //fetch search using search query
         fetch('https://api.github.com/repos/'+ repInformation.owner.login +'/'+ repInformation.name +'/commits?page=1')
                .then((response) => response.json())
@@ -189,7 +191,7 @@ export default function SearchBarElement () {
                 <Text style={styles.buttonText}>Search Specific Repository</Text>
               </TouchableOpacity>))
           }
-        </View>) : <HistoryDisplay commitData={commits} back={callbackFunction} repoName={repoName}/>}
+        </View>) : <HistoryDisplay commitData={commits} back={callbackFunction} repoName={repoName} repoOwner={repoOwner}/>}
       </View>
     );
 }

@@ -8,12 +8,17 @@
 //React Native Dependencies
 import React, { useState, useEffect } from 'react';
 import { Text, View, StyleSheet, SectionList,
- ActivityIndicator } from 'react-native';
+ ActivityIndicator, TouchableOpacity, Dimensions } from 'react-native';
 import { Button, Icon } from 'react-native-elements';
 
 
+//grab dimensions of the device being used
+var dimensions = {
+width: Dimensions.get('window').width,
+height: Dimensions.get('window').height
+}
 
-export default function HistoryDisplay ({commitData, back, repoName}) {
+export default function HistoryDisplay ({commitData, back, repoName, repoOwner}) {
   const [commitId,updateCommitId] = useState('')
   const [loadingMoreCommits, setLoadingMoreCommits] = useState(false);
   const [commits, setCommitsData] = useState(commitData);
@@ -45,7 +50,35 @@ export default function HistoryDisplay ({commitData, back, repoName}) {
   //go back from commit display
   const goBack = () => {
    back(true);
-  }
+  };
+
+   //makes async call to /repos/owner/repo commits to return the most recent commits
+   const requestMoreData = (owner, name)  => {
+      //fetch search using search query
+      fetch('https://api.github.com/repos/'+ owner +'/'+ name +'/commits?page=2')
+             .then((response) => response.json())
+             .then((responseJson) => {
+              if(responseJson.length < 30){
+                Alert.alert(
+                  'Warning',
+                  'This Repo contains fewer than 25 commits',
+                  [
+                    {text: 'Continue', onPress: () => setData(responseJson), style: 'cancel'},
+                    {text: 'Ok', style: 'cancel'},
+                  ],
+                  {
+                    cancelable: true
+                  }
+                );
+              }else {
+
+               }
+             })
+             .catch((error) => {
+               console.error(error);
+             });
+
+   };
 
   return (
     <View style={styles.historyView}>
@@ -65,10 +98,11 @@ export default function HistoryDisplay ({commitData, back, repoName}) {
       <View style = {styles.titlesView}>
         <Text style={styles.titleStyle}> {repoName} Commit History </Text>
       </View>
+     <View style={styles.sectionContainer}>
      <SectionList
         ItemSeparatorComponent={Separators}
         sections={[
-          { title: 'Commits', data: commitData },
+          { title: 'Commits', data: commits },
         ]}
         renderSectionHeader={({ section }) => (
           <Text style={styles.sectionHeaderStyle}> {section.title} </Text>
@@ -90,7 +124,11 @@ export default function HistoryDisplay ({commitData, back, repoName}) {
           </View>
         )}
         keyExtractor={(item, index) => index}
-      />
+        ListFooterComponent={
+        <TouchableOpacity  onPress={requestMoreData} style={styles.button}>
+          <Text style={styles.buttonText}>View More</Text>
+        </TouchableOpacity>}
+      /></View>
    </View>
   )
 }
@@ -100,6 +138,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginHorizontal: 16
+  },
+  sectionContainer: {
+    height: dimensions.height *.8
+  },
+  viewMore: {
+    bottom: 20
   },
   historyView: {
     top: 20,
@@ -157,4 +201,18 @@ const styles = StyleSheet.create({
   titlesView: {
     alignItems: 'center',
   },
+  button: {
+      width: '100%',
+      height: dimensions.height*.05,
+      backgroundColor: "#7F6D9B",
+      alignSelf: "center",
+       flex: 1,
+       justifyContent: 'flex-end',
+       marginBottom: 30
+  },
+  buttonText: {
+      color: "white",
+      textAlign: "center",
+      marginBottom: 10,
+  }
 });
