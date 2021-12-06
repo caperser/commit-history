@@ -100,7 +100,7 @@ export default function SearchBarElement () {
                 if(responseJson.message === 'Not Found'){
                   alert('Repository Not Found');
                 }
-                else if(responseJson.length < 30){
+                else if(responseJson.length < 25){
                   Alert.alert(
                     'Warning',
                     'This Repo contains fewer than 25 commits',
