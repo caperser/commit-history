@@ -67,12 +67,9 @@ export default function HistoryDisplay ({commitData, back, repoName, repoOwner})
                 console.log(commits.length);
               }else {
                 console.log('more info likely');
-                setPageNumber(pageNumber++);
-                console.log(pageNumber);
-                console.log(commitData.length);
-                setCommitsData(commitData.push(responseJson));
-                console.log(commitData.length);
-
+                var newPage = pageNumber + 1;
+                setPageNumber(newPage);
+                setCommitsData(commits.concat(responseJson));
               }
              })
              .catch((error) => {
