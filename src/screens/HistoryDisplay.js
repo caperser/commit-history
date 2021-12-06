@@ -22,7 +22,8 @@ export default function HistoryDisplay ({commitData, back, repoName, repoOwner})
   const [commitId,updateCommitId] = useState('')
   const [loadingMoreCommits, setLoadingMoreCommits] = useState(false);
   const [commits, setCommitsData] = useState(commitData);
-  console.log(commitData);
+  const [viewMorePressed, setViewMorePressed] = useState(false);
+  const [pageNumber, setPageNumber] = useState(2);
 
   // Flat List Item Separator
    const Separators = () => {
@@ -55,13 +56,23 @@ export default function HistoryDisplay ({commitData, back, repoName, repoOwner})
    //makes async call to /repos/owner/repo commits to return the most recent commits
    const requestMoreData = (owner, name)  => {
       //fetch search using search query
-      fetch('https://api.github.com/repos/'+ repoOwner +'/'+ repoName +'/commits?page=2')
+      fetch('https://api.github.com/repos/'+ repoOwner +'/'+ repoName +'/commits?page='+ pageNumber)
              .then((response) => response.json())
              .then((responseJson) => {
               if(responseJson.length < 30){
                 console.log('end of repo');
+                setViewMorePressed(true);
+                console.log(commits.length);
+                setCommitsData(commits.concat(responseJson));
+                console.log(commits.length);
               }else {
-                console.log('more ifo likely');
+                console.log('more info likely');
+                setPageNumber(pageNumber++);
+                console.log(pageNumber);
+                console.log(commitData.length);
+                setCommitsData(commitData.push(responseJson));
+                console.log(commitData.length);
+
               }
              })
              .catch((error) => {
@@ -115,9 +126,11 @@ export default function HistoryDisplay ({commitData, back, repoName, repoOwner})
         )}
         keyExtractor={(item, index) => index}
         ListFooterComponent={
-        <TouchableOpacity  onPress={requestMoreData} style={styles.button}>
+        <View>
+        {commitData.length < 30 || viewMorePressed? null :
+        (<TouchableOpacity  onPress={requestMoreData} style={styles.button}>
           <Text style={styles.buttonText}>View More</Text>
-        </TouchableOpacity>}
+        </TouchableOpacity>)}</View>}
       /></View>
    </View>
   )
