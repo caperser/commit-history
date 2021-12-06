@@ -19,7 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bf89e2c2-1fec-4262-a408-7a7c120f0795" name="Default Changelist" comment="Pass repo name to history component">
+    <list default="true" id="bf89e2c2-1fec-4262-a408-7a7c120f0795" name="Default Changelist" comment="error checking for searching repos">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/features/SearchBarElement.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/SearchBarElement.js" afterDir="false" />
     </list>
@@ -124,7 +124,14 @@
       <option name="project" value="LOCAL" />
       <updated>1638740412235</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="error checking for searching repos">
+      <created>1638747524547</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1638747524548</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -149,7 +156,8 @@
     <MESSAGE value="display required data" />
     <MESSAGE value="added feature to go back to search" />
     <MESSAGE value="Pass repo name to history component" />
-    <option name="LAST_COMMIT_MESSAGE" value="Pass repo name to history component" />
+    <MESSAGE value="error checking for searching repos" />
+    <option name="LAST_COMMIT_MESSAGE" value="error checking for searching repos" />
   </component>
   <component name="WindowStateProjectService">
     <state x="96" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1638567173816">

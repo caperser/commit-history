@@ -80,6 +80,13 @@ export default function SearchBarElement () {
 
    };
 
+   const setData = (responseJson) => {
+    setCommits(responseJson);
+    setLoadingCommits(false);
+    setDisplay(false);
+    setLoading(false);
+   }
+
    //makes async call to /repos/owner/repo commits to return the most recent commits
      const requestCommitsData = (repInformation)  => {
         setLoadingCommits(false);
@@ -88,8 +95,24 @@ export default function SearchBarElement () {
         fetch('https://api.github.com/repos/'+ repInformation.owner.login +'/'+ repInformation.name +'/commits?page=1')
                .then((response) => response.json())
                .then((responseJson) => {
-                 setCommits(responseJson);
-                 setLoadingCommits(false);
+                if(responseJson.length < 30){
+                  Alert.alert(
+                    'Warning',
+                    'This Repo contains fewer than 25 commits',
+                    [
+                      {text: 'Continue', onPress: () => setData(responseJson), style: 'cancel'},
+                      {text: 'Ok', style: 'cancel'},
+                    ],
+                    {
+                      cancelable: true
+                    }
+                  );
+                }else {
+                   setCommits(responseJson);
+                   setLoadingCommits(false);
+                   setDisplay(false);
+                   setLoading(false);
+                 }
                })
                .catch((error) => {
                  console.error(error);
@@ -129,10 +152,8 @@ export default function SearchBarElement () {
    // Function for click on repo item
    const getRepo = (item) => {
      //alert(item.name);
-     //navigation.navigate('History', {repoInfo: item.name});
+     //navigation.navigate('History', {repoInfo: item.name})
      requestCommitsData(item);
-     setDisplay(false);
-     setLoading(false);
    };
 
     return (
