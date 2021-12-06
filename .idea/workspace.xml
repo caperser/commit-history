@@ -19,7 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bf89e2c2-1fec-4262-a408-7a7c120f0795" name="Default Changelist" comment="layout for advanced search">
+    <list default="true" id="bf89e2c2-1fec-4262-a408-7a7c120f0795" name="Default Changelist" comment="implemented advanced search">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/features/SearchBarElement.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/SearchBarElement.js" afterDir="false" />
     </list>
@@ -159,7 +159,14 @@
       <option name="project" value="LOCAL" />
       <updated>1638760994844</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="implemented advanced search">
+      <created>1638806828921</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1638806828921</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -189,7 +196,8 @@
     <MESSAGE value="pass owner name to repo commit history" />
     <MESSAGE value="initial setup for advanced search" />
     <MESSAGE value="layout for advanced search" />
-    <option name="LAST_COMMIT_MESSAGE" value="layout for advanced search" />
+    <MESSAGE value="implemented advanced search" />
+    <option name="LAST_COMMIT_MESSAGE" value="implemented advanced search" />
   </component>
   <component name="WindowStateProjectService">
     <state x="96" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1638567173816">

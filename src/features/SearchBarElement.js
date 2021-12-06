@@ -99,8 +99,10 @@ export default function SearchBarElement () {
         fetch('https://api.github.com/repos/'+ repInformation.owner.login +'/'+ repInformation.name +'/commits?page=1')
                .then((response) => response.json())
                .then((responseJson) => {
-                console.log(responseJson);
-                if(responseJson.length < 30){
+                if(responseJson.message === 'Not Found'){
+                  alert('Repository Not Found');
+                }
+                else if(responseJson.length < 30){
                   Alert.alert(
                     'Warning',
                     'This Repo contains fewer than 25 commits',
