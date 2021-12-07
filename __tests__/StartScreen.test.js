@@ -6,7 +6,8 @@
 import React from 'react';
 
 import StartScreen from '../src/screens/StartScreen';
-import {View, Text} from 'react-native';
+import styles from '../src/screens/StartScreen';
+import {View, Text, TouchableOpacity} from 'react-native';
 import {shallow} from 'enzyme';
 import toJson from 'enzyme-to-json';
 
@@ -28,8 +29,15 @@ describe('StartScreen', () => {
   beforeEach(() => {
       mockedDispatch.mockClear();
   });
-  it('should render without issues', () => {
+
+  it('Render Start Screen', () => {
     const component = shallow(<StartScreen />);
     expect(toJson(component)).toMatchSnapshot();
-  })
+  });
+
+  it('check if child renders', () => {
+    const wrapper = shallow(<StartScreen />);
+    expect(wrapper.find(TouchableOpacity).length).toEqual(1);
+  });
+
 });
