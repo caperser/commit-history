@@ -19,10 +19,12 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bf89e2c2-1fec-4262-a408-7a7c120f0795" name="Default Changelist" comment="initial setup of unit tests">
+    <list default="true" id="bf89e2c2-1fec-4262-a408-7a7c120f0795" name="Default Changelist" comment="unit tests for start screen">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/__tests__/StartScreen.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/__tests__/StartScreen.test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/__tests__/__snapshots__/StartScreen.test.js.snap" beforeDir="false" afterPath="$PROJECT_DIR$/__tests__/__snapshots__/StartScreen.test.js.snap" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/SearchBarElement.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/SearchBarElement.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/HistoryDisplay.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/HistoryDisplay.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -209,7 +211,14 @@
       <option name="project" value="LOCAL" />
       <updated>1638833421620</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="unit tests for start screen">
+      <created>1638886390637</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1638886390638</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -246,7 +255,8 @@
     <MESSAGE value="removed log statements" />
     <MESSAGE value="25 commits requirement" />
     <MESSAGE value="initial setup of unit tests" />
-    <option name="LAST_COMMIT_MESSAGE" value="initial setup of unit tests" />
+    <MESSAGE value="unit tests for start screen" />
+    <option name="LAST_COMMIT_MESSAGE" value="unit tests for start screen" />
   </component>
   <component name="WindowStateProjectService">
     <state x="96" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1638567173816">
@@ -265,10 +275,10 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="221" y="83" key="IDE.errors.dialog/0.0.1280.680@0.0.1280.680" timestamp="1638675408064" />
-    <state x="233" y="73" key="Vcs.Push.Dialog.v2" timestamp="1638675495632">
+    <state x="233" y="73" key="Vcs.Push.Dialog.v2" timestamp="1638886398050">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="233" y="73" key="Vcs.Push.Dialog.v2/0.0.1280.680@0.0.1280.680" timestamp="1638675495632" />
+    <state x="233" y="73" key="Vcs.Push.Dialog.v2/0.0.1280.680@0.0.1280.680" timestamp="1638886398050" />
     <state x="298" y="151" key="run.anything.popup" timestamp="1638839895287">
       <screen x="0" y="0" width="1280" height="680" />
     </state>

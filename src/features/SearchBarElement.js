@@ -8,7 +8,7 @@
 //React Native Dependencies
 import React, { useState }  from 'react';
 import { Text, View, StyleSheet, FlatList, Dimensions,
-TouchableOpacity, ActivityIndicator, Alert, TextInput } from 'react-native';
+TouchableOpacity, ActivityIndicator, Alert, TextInput,  Platform } from 'react-native';
 import { SearchBar, Icon, Button } from 'react-native-elements';
 import { useNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -54,6 +54,7 @@ export default function SearchBarElement () {
                       //if results are empty display no results
                       if ('errors' in responseJson){
                         setResults('No Results');
+                        if (Platform.OS !== 'web') {
                         Alert.alert(
                           'Warning',
                           'Repo names characters must be either a hyphen ( - ) or alphanumeric, they cannot start with a hyphen and cannot include consecutive hyphens.',
@@ -64,6 +65,7 @@ export default function SearchBarElement () {
                             cancelable: true
                           }
                         );
+                        }
                       } else if(!responseJson.items.length){
                         setResults('No Results');
                       } else {
@@ -98,20 +100,27 @@ export default function SearchBarElement () {
                .then((response) => response.json())
                .then((responseJson) => {
                 if(responseJson.message === 'Not Found'){
-                  alert('Repository Not Found');
+                  if (Platform.OS !== 'web') {
+                    alert('Repository Not Found');
+                  }
                 }
                 else if(responseJson.length < 25){
-                  Alert.alert(
-                    'Warning',
-                    'This Repo contains fewer than 25 commits',
-                    [
-                      {text: 'Continue', onPress: () => setData(responseJson), style: 'cancel'},
-                      {text: 'Ok', style: 'cancel'},
-                    ],
-                    {
-                      cancelable: true
-                    }
-                  );
+                console.log(Platform.OS === 'web');
+                  if (Platform.OS !== 'web') {
+                    Alert.alert(
+                      'Warning',
+                      'This Repo contains fewer than 25 commits',
+                      [
+                        {text: 'Continue', onPress: () => setData(responseJson), style: 'cancel'},
+                        {text: 'Ok', style: 'cancel'},
+                      ],
+                      {
+                        cancelable: true
+                      }
+                    );
+                  } else {
+                    setData(responseJson);
+                  }
                 }else {
                    setCommits(responseJson);
                    setLoadingCommits(false);
@@ -156,8 +165,6 @@ export default function SearchBarElement () {
 
    // Function for click on repo item
    const getRepo = (item) => {
-     //alert(item.name);
-     //navigation.navigate('History', {repoInfo: item.name})
      requestCommitsData(item);
    };
 

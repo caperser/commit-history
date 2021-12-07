@@ -15,6 +15,9 @@
       "jest-enzyme"
     ],
     "preset": "react-native",
+    "transform": {
+      "^.+\\.[t|j]sx?$": "babel-jest"
+    },
     "testEnvironment": "enzyme",
     "transformIgnorePatterns": [
       "node_modules/(?!(@react-native|react-native)/)"
@@ -29,7 +32,6 @@
   "dependencies": {
     "@react-navigation/native": "^6.0.6",
     "@react-navigation/native-stack": "^6.2.5",
-    "babel-jest": "^27.4.2",
     "expo": "~43.0.2",
     "expo-status-bar": "~1.1.0",
     "react": "17.0.1",
@@ -37,6 +39,7 @@
     "react-native-elements": "^3.4.2",
     "react-native-safe-area-context": "3.3.2",
     "react-native-screens": "~3.8.0",
+    "react-native-vector-icons": "^9.0.0",
     "react-native-web": "0.17.1",
     "react-test-renderer": "^17.0.2",
     "ts-jest": "^27.1.0"
@@ -45,6 +48,7 @@
     "@babel/core": "^7.12.9",
     "@babel/preset-env": "^7.16.4",
     "@babel/preset-react": "^7.16.0",
+    "babel-jest": "^27.4.2",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.6",
     "identity-obj-proxy": "^3.0.0",

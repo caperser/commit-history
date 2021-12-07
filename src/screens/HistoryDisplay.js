@@ -8,7 +8,7 @@
 //React Native Dependencies
 import React, { useState, useEffect } from 'react';
 import { Text, View, StyleSheet, SectionList,
- ActivityIndicator, TouchableOpacity, Dimensions } from 'react-native';
+ ActivityIndicator, TouchableOpacity, Dimensions,  Platform } from 'react-native';
 import { Button, Icon } from 'react-native-elements';
 
 
